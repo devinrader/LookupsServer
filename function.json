@@ -3,7 +3,7 @@
     {
       "type": "httpTrigger",
       "direction": "in",
-      "route": "lookup",
+      "route": "foo",
       "authLevel": "anonymous",
       "methods": [ "get" ]
     },
