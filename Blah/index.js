@@ -15,7 +15,8 @@ module.exports = function(context, req) {
         var client = new LookupsClient(accountSid, authToken);
 
         client.phoneNumbers( (req.query.number || req.body.number) ).get({
-            type: 'carrier'
+            type: 'caller-name',
+            type: 'carrier',
             }, function(error, number) {
                 context.log(number.carrier.type);
                 context.log(number.carrier.name);
