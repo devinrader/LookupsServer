@@ -1,13 +1,16 @@
 {
   "bindings": [
     {
+      "webHookType": "",
       "type": "httpTrigger",
       "direction": "in",
-      "methods": [ "get" ]
+      "name": "req"
     },
     {
+      "name": "res"
       "type": "http",
       "direction": "out"
     }
-  ]
+  ],
+  "disabled":false
 }
