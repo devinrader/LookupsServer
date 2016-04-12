@@ -32,6 +32,8 @@ module.exports = function(context, req) {
             context.done();
 
         });
+
+        context.log('shouldnt be here');
     }
     else {
         context.res = {
@@ -40,4 +42,6 @@ module.exports = function(context, req) {
         };
         context.done();
     }
+
+    context.log('shouldnt be here either');
 };
