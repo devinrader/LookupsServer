@@ -16,15 +16,21 @@ module.exports = function(context, req) {
 
         client.phoneNumbers( (req.query.number || req.body.number) ).get({
             type: ['carrier','caller-name'],
-            }, function(error, number) {
-                context.log(error);
-                context.log(number.carrier.type);
-                context.log(number.carrier.name);
-                context.res = {
-                    // status: 200, Defaults to 200 
-                    body: number
-                };
-                context.done();
+        }, function(error, number) {
+
+            context.log('request complete');            
+            context.log(error);
+            context.log(number);
+
+            context.log(number.carrier.type);
+            context.log(number.carrier.name);
+            
+            context.res = {
+                // status: 200, Defaults to 200 
+                body: number
+            };
+            context.done();
+
         });
     }
     else {
