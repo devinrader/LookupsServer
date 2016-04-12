@@ -4,8 +4,12 @@ module.exports = function(context, req) {
     
     if (req.query.number || (req.body && req.body.number)) {
         
-        var accountSid = 'AC3094732a3c49700934481addd5ce1659';
-        var authToken = '{{ auth_token }}';
+        context.log('number found:' + (req.query.number || req.body.number) );
+
+        var accountSid = process.env.AccountSid;
+        var authToken = process.env.AuthToken;
+
+        context.log('credentials: ' + accountSid + ':' + authToken);
 
         var LookupsClient = require('twilio').LookupsClient;
         var client = new LookupsClient(accountSid, authToken);
@@ -13,8 +17,8 @@ module.exports = function(context, req) {
         client.phoneNumbers( (req.query.number || req.body.number) ).get({
             type: 'carrier'
             }, function(error, number) {
-                console.log(number.carrier.type);
-                console.log(number.carrier.name);
+                context.log(number.carrier.type);
+                context.log(number.carrier.name);
 
                 context.res = {
                     // status: 200, Defaults to 200 
