@@ -6,6 +6,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "twilio": "latest"
+    "request": "latest"
   }
 }

@@ -1,3 +1,5 @@
+var http = require('http');
+
 module.exports = function(context, req) {
     context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
 
@@ -11,27 +13,33 @@ module.exports = function(context, req) {
 
         context.log('credentials: ' + accountSid + ':' + authToken);
 
-        var LookupsClient = require('twilio').LookupsClient;
-        var client = new LookupsClient(accountSid, authToken);
+//https://lookups.twilio.com/v1/PhoneNumbers/+15108675309/?Type=carrier&Type=caller-name
 
-        client.phoneNumbers( (req.query.number || req.body.number) ).get({
-            type: ['carrier','caller-name'],
-        }, function(error, number) {
+        var request = require('request');
 
-            context.log('request complete');            
-            context.log(error);
-            context.log(number);
+        request('https://lookups.twilio.com/v1/PhoneNumbers/+17327420431/?Type=carrier&Type=caller-name', {
+          'auth': {
+            'user': 'AC3137d76457814a5eabf7de62f346d39a',
+            'pass': '3c2fbfbf668297ac4621b165534e55e6',
+            'sendImmediately': false
+          }},
+          function (error, response, body) {
 
-            context.log(number.carrier.type);
-            context.log(number.carrier.name);
-            
-            context.res = {
-                // status: 200, Defaults to 200 
-                body: number
-            };
-            context.done();
+              console.log(error) // Show the HTML for the Google homepage. 
+              console.log(response.statusCode) // Show the HTML for the Google homepage. 
+
+              if (!error && response.statusCode == 200) {
+
+                context.res = {
+                    // status: 200, Defaults to 200 
+                    body: body
+                };
+                context.done();
+
+              }
 
         });
+
 
         context.log('shouldnt be here');
     }
