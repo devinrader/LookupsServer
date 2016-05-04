@@ -1,27 +1,21 @@
 var http = require('http');
 
 module.exports = function(context, req) {
-    context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
+    context.log('Node.js HTTP trigger function processing a request. RequestUri=%s', req.originalUrl);
 
-    
     if (req.query.number || (req.body && req.body.number)) {
         
-        context.log('number found:' + (req.query.number || req.body.number) );
-
         var accountSid = process.env.AccountSid;
         var authToken = process.env.AuthToken;
 
-        context.log('credentials: ' + accountSid + ':' + authToken);
-
-//https://lookups.twilio.com/v1/PhoneNumbers/+15108675309/?Type=carrier&Type=caller-name
-
         var request = require('request');
-
+        
+        /*
         request('https://lookups.twilio.com/v1/PhoneNumbers/' + (req.query.number || req.body.number) + '/?Type=carrier&Type=caller-name', {
           'auth': {
             'user': process.env.AccountSid,
             'pass': process.env.AuthToken,
-            'sendImmediately': false
+            'sendImmediately': true
           }},
           function (error, response, body) {
 
@@ -39,9 +33,9 @@ module.exports = function(context, req) {
               }
 
         });
+        */
 
-
-        context.log('shouldnt be here');
+        context.log('Phone Number value found');
     }
     else {
         context.res = {
@@ -51,5 +45,5 @@ module.exports = function(context, req) {
         context.done();
     }
 
-    context.log('shouldnt be here either');
+    context.log('Function complete');
 };
