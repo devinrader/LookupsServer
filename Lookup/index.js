@@ -10,7 +10,6 @@ module.exports = function(context, req) {
 
         var request = require('request');
         
-        /*
         request('https://lookups.twilio.com/v1/PhoneNumbers/' + (req.query.number || req.body.number) + '/?Type=carrier&Type=caller-name', {
           'auth': {
             'user': process.env.AccountSid,
@@ -19,8 +18,8 @@ module.exports = function(context, req) {
           }},
           function (error, response, body) {
 
-              console.log(error) // Show the HTML for the Google homepage. 
-              console.log(response.statusCode) // Show the HTML for the Google homepage. 
+              context.log(error) 
+              context.log(response.statusCode)
 
               if (!error && response.statusCode == 200) {
 
@@ -30,13 +29,18 @@ module.exports = function(context, req) {
                 };
                 context.done();
 
+              } else {
+                context.res = {
+                  status: 500,
+                  body: error
+                };
+                context.done();
               }
 
         });
-        */
 
         context.log('Phone Number value found');
-        context.done();
+        //context.done();
     }
     else {
         context.res = {
