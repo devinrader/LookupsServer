@@ -47,4 +47,5 @@ module.exports = function(context, req) {
     }
 */
     context.log('Function complete');
+    context.done();
 };
