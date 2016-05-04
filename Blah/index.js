@@ -21,7 +21,7 @@ module.exports = function(context, req) {
           'auth': {
             'user': process.env.AccountSid,
             'pass': process.env.AuthToken,
-            'sendImmediately': false
+            'sendImmediately': true
           }},
           function (error, response, body) {
 
