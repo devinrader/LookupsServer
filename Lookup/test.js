@@ -22,7 +22,7 @@ var request = require('request');
 request('https://lookups.twilio.com/v1/PhoneNumbers/+17327420431/?Type=carrier&Type=caller-name', {
   'auth': {
     'user': 'AC3137d76457814a5eabf7de62f346d39a',
-    'pass': '3c2fbfbf668297ac4621b165534e55e6',
+    'pass': '[]',
     'sendImmediately': false
   }},
   function (error, response, body) {
