@@ -3,7 +3,6 @@ var http = require('http');
 module.exports = function(context, req) {
     context.log('Node.js HTTP trigger function processing a request. RequestUri=%s', req.originalUrl);
 
-/*
     if (req.query.number || (req.body && req.body.number)) {
         
         var accountSid = process.env.AccountSid;
@@ -34,9 +33,10 @@ module.exports = function(context, req) {
               }
 
         });
-        *
+        */
 
         context.log('Phone Number value found');
+        context.done();
     }
     else {
         context.res = {
@@ -45,7 +45,6 @@ module.exports = function(context, req) {
         };
         context.done();
     }
-*/
+
     context.log('Function complete');
-    context.done();
 };
